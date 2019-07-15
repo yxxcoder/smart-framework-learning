@@ -84,7 +84,7 @@ public class DispatcherServlet extends HttpServlet {
             Method actionMethod = handler.getActionMethod();
             Object result = ReflectionUtil.invokeMethod(controllerBean, actionMethod, param);
             // 处理 Action 方法返回值
-            if (request instanceof View) {
+            if (result instanceof View) {
                 // 返回 JSP 页面
                 View view = (View) result;
                 String path = view.getPath();

@@ -25,8 +25,13 @@ public class CustomerController {
     /**
      * 进入 客户列表 界面
      */
-    @Action("get:/customer")
+    @Action("get:/")
     public View index(Param param) {
+        return customer(param);
+    }
+
+    @Action("get:/customer")
+    public View customer(Param param) {
         List<Customer> customerList = customerService.getCustomerList();
         return new View("customer.jsp").addModel("customerList", customerList);
     }
