@@ -7,7 +7,7 @@
 
 <h1><a href="${BASE}/">首页</a> / <a href="${BASE}/customer">客户管理</a> / 创建客户</h1>
 
-<form id="customer_form" enctype="multipart/form-data">
+<div id="customer_form">
     <table>
         <tr>
             <td>客户名称：</td>
@@ -35,20 +35,22 @@
         </tr>
     </table>
     <button type="submit">保存</button>
-</form>
+</div>
 
 <script src="${BASE}/asset/lib/jquery/jquery.min.js"></script>
 <script src="${BASE}/asset/lib/jquery-form/jquery.form.min.js"></script>
 <script>
-    $(function() {
-        $('#customer_form').ajaxForm({
-            type: 'post',
-            url: '${BASE}/customer_create',
-            success: function(data) {
-                if (data) {
+    $(document).ready(function () {
+        $("button").click(function () {
+            $.post("${BASE}/customer_create", {
+                    name: $("input[name='name']").val(),
+                    contact: $("input[name='contact']").val(),
+                    telephone: $("input[name='telephone']").val(),
+                    email: $("input[name='email']").val()
+                },
+                function (data, status) {
                     location.href = '${BASE}/customer';
-                }
-            }
+                });
         });
     });
 </script>
